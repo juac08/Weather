@@ -188,13 +188,12 @@ ul {
     letter-spacing: 0.25rem;
 }
 
-
-/* .section-center {
+.section-center {
     width: 100vw;
     margin: 0 auto;
     max-width: 35rem;
     text-align: center;
-} */
+}
 
 .f {
     display: flex;
@@ -209,7 +208,6 @@ ul {
     background-image: url(./after_noon.webp);
     background-position: top;
     background-repeat: no-repeat;
-    height: 90vh;
     padding-top: 1rem;
 }
 
@@ -217,7 +215,6 @@ ul {
     background-image: url(./night.webp);
     background-position: top;
     background-repeat: no-repeat;
-    height: 90vh;
     padding-top: 1rem;
 }
 
