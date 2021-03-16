@@ -5,7 +5,7 @@ const AppProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("oslo");
-  const url ='https://api.openweathermap.org/data/2.5/weather?q='+ name +'&units=metric&appid='+process.env.REACT_APP_KEY+'';
+  const url =`https://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${process.env.REACT_APP_KEY}`;
     const getData = async () => {
     setLoading(true);
     try {
