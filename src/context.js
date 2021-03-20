@@ -4,7 +4,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [name, setName] = useState("Tromsø");
+  const [name, setName] = useState("Oslo");
   const clientID = process.env.REACT_APP_KEY;
   const url =`https://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${clientID}`;
     const getData = async () => {
