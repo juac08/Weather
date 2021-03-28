@@ -1,5 +1,5 @@
 {
-    "short_name": "Weather_App",
+    "short_name": "Weather",
     "name": "Weather App",
     "icons": [{
             "src": "favicon.ico",
@@ -7,12 +7,12 @@
             "type": "image/x-icon"
         },
         {
-            "src": "icon-192x192.png",
+            "src": "logo192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "icon-512x512.png",
+            "src": "logo512.png",
             "type": "image/png",
             "sizes": "512x512"
         }
