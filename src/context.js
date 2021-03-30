@@ -22,6 +22,7 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     getData();
   }, []);
+  console.log(data)
   if (loading) {
     return <Loading/>
   };

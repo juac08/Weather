@@ -137,6 +137,15 @@ p {
     margin: 1rem auto;
     text-align: center;
     line-height: 4rem;
+    height: 100vh;
+}
+
+.minmax {
+    display: flex;
+    flex: 0 0 calc(50% - 1rem);
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -205,16 +214,18 @@ ul {
 }
 
 .day {
-    background-image: url(./after_noon.webp);
-    background-position: top;
+    background: linear-gradient(rgba(121, 153, 185, 0.2), rgba(84, 80, 80, 0.3)), url(./after_noon.webp);
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     padding-top: 1rem;
 }
 
 .night {
-    background-image: url(./night.webp);
-    background-position: top;
+    background-image: linear-gradient(rgba(121, 153, 185, 0.2), rgba(84, 80, 80, 0.3)), url(./night.webp);
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     padding-top: 1rem;
 }
 
