@@ -4,6 +4,14 @@
   padding: 2rem;
 }
 
+.skeleton-container.dark-mode {
+  background: #0b1220;
+}
+
+.skeleton-container.light-mode {
+  background: #f6f8fb;
+}
+
 .skeleton {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;

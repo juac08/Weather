@@ -15,6 +15,7 @@ import {
   Waves,
   Visibility,
   Speed,
+  Search,
   MyLocation,
   Share,
   VolumeUp,
@@ -23,6 +24,7 @@ import {
 import WeatherParticles from "./WeatherParticles";
 import CountUp from "./CountUp";
 import ExtendedWeather from "./ExtendedWeather";
+import cities from "./data/cities.json";
 
 function FetchData() {
   const {
@@ -43,35 +45,9 @@ function FetchData() {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(
-    localStorage.getItem("soundEnabled") === "true",
+    localStorage.getItem("soundEnabled") !== "false",
   );
   const audioRef = useRef(null);
-
-  // Popular cities for autocomplete
-  const popularCities = [
-    "New York",
-    "London",
-    "Paris",
-    "Tokyo",
-    "Dubai",
-    "Singapore",
-    "Hong Kong",
-    "Los Angeles",
-    "Chicago",
-    "Mumbai",
-    "Sydney",
-    "Berlin",
-    "Madrid",
-    "Rome",
-    "Toronto",
-    "Moscow",
-    "Beijing",
-    "Seoul",
-    "Bangkok",
-    "Istanbul",
-    "Barcelona",
-    "Amsterdam",
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,10 +86,11 @@ function FetchData() {
 
     // Autocomplete suggestions
     if (value.length > 1) {
-      const filtered = popularCities.filter((city) =>
-        city.toLowerCase().startsWith(value.toLowerCase()),
+      const q = value.toLowerCase();
+      const filtered = cities.filter((city) =>
+        city.toLowerCase().includes(q),
       );
-      setSuggestions(filtered.slice(0, 5));
+      setSuggestions(filtered.slice(0, 8));
       setShowSuggestions(true);
     } else {
       setSuggestions([]);
@@ -162,6 +139,50 @@ function FetchData() {
     localStorage.setItem("soundEnabled", newState);
     if (!newState && audioRef.current) {
       audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    if (newState) {
+      const weatherMain = data.weather?.[0]?.main?.toLowerCase();
+      const soundFile = getSoundFile(weatherMain);
+      if (soundFile) {
+        if (!audioRef.current) {
+          audioRef.current = new window.Audio();
+        }
+        if (audioRef.current.src !== window.location.origin + soundFile) {
+          audioRef.current.src = soundFile;
+        }
+        audioRef.current.loop = true;
+        audioRef.current.volume = 0.5;
+        audioRef.current.play().catch(() => {
+          /* ignore play errors */
+        });
+      }
+    }
+  };
+
+  const calmSounds = ["/sounds/calm-1.wav", "/sounds/calm-2.wav", "/sounds/calm-3.wav"];
+  const pickCalmSound = () =>
+    calmSounds[Math.floor(Math.random() * calmSounds.length)];
+
+  const getSoundFile = (weatherMain) => {
+    switch (weatherMain) {
+      case "rain":
+      case "drizzle":
+        return "/sounds/rain.wav";
+      case "thunderstorm":
+        return "/sounds/thunderstorm.wav";
+      case "snow":
+        return "/sounds/snow.wav";
+      case "wind":
+      case "clouds":
+      case "mist":
+      case "fog":
+      case "haze":
+        return "/sounds/wind.wav";
+      case "clear":
+        return pickCalmSound();
+      default:
+        return pickCalmSound();
     }
   };
 
@@ -171,27 +192,7 @@ function FetchData() {
       audioRef.current = new window.Audio();
     }
     const weatherMain = data.weather?.[0]?.main?.toLowerCase();
-    let soundFile = null;
-    switch (weatherMain) {
-      case "rain":
-      case "drizzle":
-        soundFile = "/sounds/rain.mp3";
-        break;
-      case "thunderstorm":
-        soundFile = "/sounds/thunderstorm.mp3";
-        break;
-      case "snow":
-        soundFile = "/sounds/snow.mp3";
-        break;
-      case "wind":
-        soundFile = "/sounds/wind.mp3";
-        break;
-      case "clear":
-        soundFile = "/sounds/clear.mp3";
-        break;
-      default:
-        soundFile = null;
-    }
+    const soundFile = getSoundFile(weatherMain);
 
     if (soundEnabled && soundFile) {
       if (audioRef.current.src !== window.location.origin + soundFile) {
@@ -240,11 +241,11 @@ function FetchData() {
         {/* Parallax Background Layers */}
         <div
           className="parallax-bg"
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+          style={{ transform: `translateY(${scrollY * 0.15}px)` }}
         />
         <div
           className="parallax-layer-1"
-          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          style={{ transform: `translateY(${scrollY * 0.08}px)` }}
         />
 
         {/* Header with Dark Mode Toggle and Actions */}
@@ -252,6 +253,14 @@ function FetchData() {
           <h2 className="app-title">
             <WbSunny className="title-icon" /> Weather App
           </h2>
+          {data.name && data.main && scrollY > 120 && (
+            <div className="header-mini">
+              <span className="header-mini-city">{data.name}</span>
+              <span className="header-mini-temp">
+                {Math.round(data.main?.temp)}°
+              </span>
+            </div>
+          )}
           <div className="header-actions">
             <IconButton
               onClick={toggleSound}
@@ -297,6 +306,11 @@ function FetchData() {
                     }
                   }}
                   InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search className="search-icon" />
+                      </InputAdornment>
+                    ),
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton

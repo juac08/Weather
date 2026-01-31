@@ -1,6 +1,6 @@
 import React from "react";
 import "./ExtendedWeather.css";
-import { WbSunny, AcUnit, Cloud } from "@material-ui/icons";
+import { WbSunny, Cloud } from "@material-ui/icons";
 
 function ExtendedWeather({ data }) {
   // Calculate UV Index (approximate based on time and weather)
@@ -61,30 +61,8 @@ function ExtendedWeather({ data }) {
     };
   };
 
-  // Generate simple hourly forecast (3-hour intervals)
-  const getHourlyForecast = () => {
-    const currentTemp = data.main?.temp || 20;
-    const hours = [];
-    const now = new Date();
-
-    for (let i = 1; i <= 5; i++) {
-      const futureTime = new Date(now.getTime() + i * 3 * 60 * 60 * 1000);
-      const hour = futureTime.getHours();
-      const tempVariation = Math.sin(i * 0.5) * 3;
-
-      hours.push({
-        time: hour > 12 ? `${hour - 12}PM` : `${hour}AM`,
-        temp: Math.round(currentTemp + tempVariation),
-        icon: hour >= 6 && hour <= 18 ? "☀️" : "🌙",
-      });
-    }
-
-    return hours;
-  };
-
   const uvIndex = getUVIndex();
   const aqi = getAQI();
-  const hourlyForecast = getHourlyForecast();
 
   return (
     <div className="extended-weather">
@@ -130,22 +108,6 @@ function ExtendedWeather({ data }) {
         <p className="aqi-description">{aqi.description}</p>
       </div>
 
-      {/* Hourly Forecast */}
-      <div className="extended-card hourly-card">
-        <div className="extended-header">
-          <AcUnit className="extended-icon" />
-          <h3>Hourly Forecast</h3>
-        </div>
-        <div className="hourly-grid">
-          {hourlyForecast.map((hour, index) => (
-            <div key={index} className="hourly-item">
-              <div className="hourly-time">{hour.time}</div>
-              <div className="hourly-icon">{hour.icon}</div>
-              <div className="hourly-temp">{hour.temp}°</div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

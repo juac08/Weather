@@ -2,8 +2,9 @@ import React from "react";
 import "./SkeletonLoader.css";
 
 function SkeletonLoader() {
+  const isDark = localStorage.getItem("darkMode") !== "false";
   return (
-    <div className="skeleton-container">
+    <div className={`skeleton-container ${isDark ? "dark-mode" : "light-mode"}`}>
       <div className="skeleton-header">
         <div className="skeleton skeleton-title"></div>
         <div className="skeleton skeleton-toggle"></div>

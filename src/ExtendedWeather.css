@@ -1,48 +1,49 @@
 .extended-weather {
-  margin: 3rem 0;
+  margin: 1rem 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.9rem;
   padding: 0 0.5rem;
 }
 
 .extended-card {
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: var(--radius);
   transition: var(--transition);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .weather-app.light-mode .extended-card {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background: var(--light-glass);
+  box-shadow: var(--light-shadow);
 }
 
 .weather-app.dark-mode .extended-card {
-  background: rgba(45, 55, 72, 0.9);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  background: var(--dark-glass);
+  box-shadow: var(--dark-shadow);
 }
 
 .extended-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2) !important;
 }
 
 .extended-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  gap: 0.6rem;
+  margin-bottom: 0.9rem;
 }
 
 .extended-icon {
-  font-size: 1.75rem !important;
+  font-size: 1.4rem !important;
   opacity: 0.8;
 }
 
 .extended-header h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
@@ -59,27 +60,27 @@
 /* UV Index */
 .uv-display {
   text-align: center;
-  margin: 1.5rem 0;
+  margin: 0.8rem 0;
 }
 
 .uv-level {
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 700;
   line-height: 1;
 }
 
 .uv-label {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-top: 0.5rem;
 }
 
 .uv-bar {
-  height: 8px;
+  height: 6px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 1rem;
+  margin-top: 0.6rem;
 }
 
 .weather-app.dark-mode .uv-bar {
@@ -95,26 +96,41 @@
 /* Air Quality */
 .aqi-display {
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.7rem 0;
 }
 
 .aqi-level {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1;
 }
 
 .aqi-label {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   margin-top: 0.5rem;
 }
 
 .aqi-description {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   opacity: 0.8;
-  margin-top: 1rem;
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .extended-weather {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .extended-card {
+    padding: 0.85rem;
+  }
+
+  .extended-header h3 {
+    font-size: 0.9rem;
+  }
 }
 
 .weather-app.light-mode .aqi-description {
