@@ -18,7 +18,7 @@
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-moment": "^1.1.1",
-        "react-reveal": "^1.2.2",
+        "react-awesome-reveal": "^4.2.14",
         "react-scripts": "^5.0.1",
         "react-spinners": "^0.10.6",
         "web-vitals": "^1.1.0",

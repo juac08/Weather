@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "./context";
-import Fade from "react-reveal/Fade";
+import { Fade } from "react-awesome-reveal";
 import {
   WbSunny,
   Brightness2,
