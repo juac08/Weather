@@ -1,0 +1,145 @@
+.skeleton-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 12px;
+}
+
+.dark-mode .skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.skeleton-title {
+  width: 200px;
+  height: 40px;
+}
+
+.skeleton-toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeleton-search {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.skeleton-input {
+  flex: 1;
+  height: 56px;
+}
+
+.skeleton-button {
+  width: 120px;
+  height: 56px;
+}
+
+.skeleton-main {
+  text-align: center;
+}
+
+.skeleton-city {
+  width: 300px;
+  height: 60px;
+  margin: 0 auto 1rem;
+}
+
+.skeleton-date {
+  width: 400px;
+  height: 24px;
+  margin: 0 auto 2rem;
+}
+
+.skeleton-temp-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.skeleton-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.skeleton-temp {
+  width: 200px;
+  height: 120px;
+}
+
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.skeleton-card {
+  height: 100px;
+}
+
+.skeleton-sun {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeleton-sun-card {
+  height: 80px;
+}
+
+@media (max-width: 768px) {
+  .skeleton-container {
+    padding: 1rem;
+  }
+
+  .skeleton-city {
+    width: 200px;
+    height: 40px;
+  }
+
+  .skeleton-date {
+    width: 250px;
+  }
+
+  .skeleton-temp-section {
+    flex-direction: column;
+  }
+
+  .skeleton-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .skeleton-temp {
+    width: 150px;
+    height: 80px;
+  }
+}

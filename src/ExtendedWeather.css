@@ -1,0 +1,215 @@
+.extended-weather {
+  margin: 3rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.extended-card {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  backdrop-filter: blur(20px);
+}
+
+.weather-app.light-mode .extended-card {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.weather-app.dark-mode .extended-card {
+  background: rgba(45, 55, 72, 0.9);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.extended-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2) !important;
+}
+
+.extended-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.extended-icon {
+  font-size: 1.75rem !important;
+  opacity: 0.8;
+}
+
+.extended-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.weather-app.light-mode .extended-header h3,
+.weather-app.light-mode .extended-icon {
+  color: var(--light-text-primary);
+}
+
+.weather-app.dark-mode .extended-header h3,
+.weather-app.dark-mode .extended-icon {
+  color: var(--dark-text-primary);
+}
+
+/* UV Index */
+.uv-display {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.uv-level {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.uv-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.uv-bar {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.weather-app.dark-mode .uv-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.uv-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease-out;
+}
+
+/* Air Quality */
+.aqi-display {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.aqi-level {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.aqi-label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.aqi-description {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 1rem;
+}
+
+.weather-app.light-mode .aqi-description {
+  color: var(--light-text-secondary);
+}
+
+.weather-app.dark-mode .aqi-description {
+  color: var(--dark-text-secondary);
+}
+
+/* Hourly Forecast */
+.hourly-card {
+  grid-column: span 2;
+}
+
+.hourly-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.hourly-item {
+  text-align: center;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.weather-app.dark-mode .hourly-item {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hourly-item:hover {
+  transform: translateY(-3px);
+  background: rgba(47, 128, 237, 0.2);
+}
+
+.hourly-time {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.weather-app.light-mode .hourly-time,
+.weather-app.light-mode .hourly-temp {
+  color: var(--light-text-primary);
+}
+
+.weather-app.dark-mode .hourly-time,
+.weather-app.dark-mode .hourly-temp {
+  color: var(--dark-text-primary);
+}
+
+.hourly-icon {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.hourly-temp {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .extended-weather {
+    grid-template-columns: 1fr;
+  }
+
+  .hourly-card {
+    grid-column: span 1;
+  }
+
+  .hourly-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .hourly-item {
+    padding: 0.75rem;
+  }
+
+  .hourly-icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hourly-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .uv-level,
+  .aqi-level {
+    font-size: 2rem;
+  }
+}
